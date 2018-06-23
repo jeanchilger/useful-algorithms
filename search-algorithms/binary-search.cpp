@@ -15,7 +15,6 @@ int binarySearch(vector<int> vec, int val) {
         if (val == vec.at(mid)) {
             return mid;
         } else if (val < vec.at(mid)) {
-            //start = 0;
             end = mid-1;
             mid = (end + start) / 2;
         } else {
@@ -25,6 +24,7 @@ int binarySearch(vector<int> vec, int val) {
     }
 }
 
+// testing the algorithm
 int main() {
 
     cout << "Number of elements >> elements\n";

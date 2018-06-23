@@ -3,47 +3,57 @@
 
 using namespace std;
 
-int binarySearch(vector<int> vec, float val, int start, int end, int mid) {
+int binarySearch(int arr[], double val, int start, int end, int mid) {
     /*
     return the index of the closest value that matches with a given value
+    this behavior is similar to the binary insertion
     */
     if (start == end + 1) {
+        if (val - arr[end] < arr[start] - val) {
+            return end;
+        }
         return start;
+
     }
 
-    if (val == vec.at(mid)) {
+    if (val == arr[mid]) {
         return mid;
-    } else if (val < vec.at(mid)) {
-        return binarySearch(vec, val, start, mid-1, (mid-1 + start) / 2);
+
+    } else if (val < arr[mid]) {
+        return binarySearch(arr, val, start, mid-1, (mid-1 + start) / 2);
+
     } else {
-        return binarySearch(vec, val, mid+1, end, (end + mid+1) / 2);
+        return binarySearch(arr, val, mid+1, end, (end + mid+1) / 2);
     }
 }
 
+// testing the algorithm
 int main() {
 
     cout << "Number of elements >> elements\n";
-    vector<int> vec;
-    int vSize, elem;
-    cin >> vSize;
-    for (int i = 0; i < vSize; i++) {
-        cin >> elem;
-        vec.push_back(elem);
+    // vector<int> vec;
+    int size;
+    cin >> size;
+    int arr[size];
+    for (int i = 0; i < size; i++) {
+        cin >> arr[i];
+        // cin >> elem;
+        // vec.push_back(elem);
     }
 
-    float val;
+    double val;
 
     cout << "Values to find\n";
     while (1) {
         cin >> val;
-        if (val < vec.at(0)) {
+        if (val < arr[0]) {
             cout << 0 << endl;
             break;
-        } else if (val > vec.at(vec.size()-1)) {
-            cout << vec.size()-1 << endl;
+        } else if (val > arr[size-1]) {
+            cout << size-1 << endl;
             break;
         }
-        cout << binarySearch(vec, val, 0, vec.size()-1, vec.size()/2) << endl << endl;
+        cout << binarySearch(arr, val, 0, size-1, size/2) << endl << endl;
     }
 
     return 0;

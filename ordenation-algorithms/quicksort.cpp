@@ -3,6 +3,10 @@
 using namespace std;
 
 int partition(int arr[], int first, int last) {
+    /*
+    returns the index of the pivot
+    before return, the pivot is set to its correct position
+    */
     int pivot = first;
     int low = first + 1;
     int high = last;
@@ -45,6 +49,7 @@ void quicksort(int arr[], int first, int last) {
 
 int main() {
 
+    // tests the algorithm
     int vec[9] = {54, 26, 93, 17, 77, 31, 44, 55, 20};
     quicksort(vec, 0, 8);
 

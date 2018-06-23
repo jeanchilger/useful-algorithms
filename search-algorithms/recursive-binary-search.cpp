@@ -13,6 +13,7 @@ int binarySearch(vector<int> vec, int val, int start, int end, int mid) {
     }
 }
 
+// testing the algorithm
 int main() {
 
     cout << "Number of elements >> elements\n";
