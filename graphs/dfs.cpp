@@ -8,13 +8,12 @@ using namespace std;
 // HERE
 int visited[64];
 
-void dfs(vector<vector<int> > graph, int vertex, int compId) {
+void dfs(vector<vector<int> > graph, int vertex) {
 
     visited[vertex] = 1;
-    components[compId].push_back(vertex);
     for (int v = 0; v < graph[vertex].size(); v++) {
         if (!visited[graph[vertex][v]]) {
-            dfs(graph, graph[vertex][v], compId);
+            dfs(graph, graph[vertex][v]);
         }
     }
 }
@@ -51,12 +50,10 @@ int main() {
 
         dfs(graph, 0, 0);
 
-        int id = 1;
         for (int i = 0; i < v; i++) {
 
             if (!visited[i]) {
-                dfs(graph, i, id);
-                id++;
+                dfs(graph, i);
             }
         }
 
