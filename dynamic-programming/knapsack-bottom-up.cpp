@@ -49,7 +49,7 @@ int main () {
 
     cout << "Descrição dos itens (peso valor)\n";
     for (int i = 0; i < n; i++) {
-        cin >> wei >> val;
+        cin >> val >> wei;
         weights.push_back(wei);
         values.push_back(val);
         cache[i][0] = 0; // first column all zeros;

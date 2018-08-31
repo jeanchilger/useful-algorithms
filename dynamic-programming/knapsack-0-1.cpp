@@ -2,14 +2,13 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <algorithm>
 
 using namespace std;
 
 vector<vector<int> > cache;
+int tw; // total weight of the knapsack
 vector<int> values; // vector with the values of the items;
 vector<int> weights; // vector with the weights of the items
-int tw; // total weight of the knapsack
 int n; // number of items;
 
 int solve (int i, int w) { // i == item (peso, valor); w == soma total (0 - tw);
@@ -30,6 +29,7 @@ int solve (int i, int w) { // i == item (peso, valor); w == soma total (0 - tw);
         return cache[i][w] = max(a, b);
 
     }
+
 }
 
 int main () {
@@ -57,7 +57,7 @@ int main () {
     }
     int g = solve(n-1, tw);
 
-    cout << g << "\n";
+    cout << cache[n-1][tw] << "\n";
 
     return 0;
 }

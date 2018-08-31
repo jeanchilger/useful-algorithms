@@ -41,6 +41,11 @@ int main () {
         r = max(r, solve(i));
     }
 
+    // int r = solve(0);
+    for (int i = 0; i < n; i++) {
+        cout << cache[i] << "\n";
+    }
+
     cout << r << "\n";
 
     return 0;
