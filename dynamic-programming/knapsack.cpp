@@ -23,11 +23,10 @@ int solve (int i, int w) { // i == item (peso, valor); w == soma total (0 - tw);
         return cache[i][w] = solve(i - 1, w);
 
     } else {
-        int a = values[i] + solve(i - 1, w - weights[i]); // put current item
-        int b = solve(i - 1, w); // dont put current item
-
-        return cache[i][w] = max(a, b);
-
+        return cache[i][w] = max(solve(i - 1, w),
+                                 solve(i - 1, w - weights[i]) + values[i]); // knapsack 0/1
+       /* return cache[i][w] = max(solve(i - 1, w),
+                                 solve(i, w - weights[i]) + values[i]); // unbounded knapsack*/
     }
 
 }
