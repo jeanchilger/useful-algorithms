@@ -15,7 +15,7 @@ int solve (int i, int w) { // i == item (peso, valor); w == soma total (0 - tw);
     /*
     Returns the biggest value that fits in a knapsack weight limit.
     */
-    if (i == 0 || w == 0) return 0;
+    if (i == -1 || w == 0) return 0;
 
     if (cache[i][w] != -999) return cache[i][w];
 
@@ -23,10 +23,10 @@ int solve (int i, int w) { // i == item (peso, valor); w == soma total (0 - tw);
         return cache[i][w] = solve(i - 1, w);
 
     } else {
-        return cache[i][w] = max(solve(i - 1, w),
-                                 solve(i - 1, w - weights[i]) + values[i]); // knapsack 0/1
        /* return cache[i][w] = max(solve(i - 1, w),
-                                 solve(i, w - weights[i]) + values[i]); // unbounded knapsack*/
+                                 solve(i - 1, w - weights[i]) + values[i]); // knapsack 0/1*/
+        return cache[i][w] = max(solve(i - 1, w),
+                                 solve(i, w - weights[i]) + values[i]); // unbounded knapsack
     }
 
 }
@@ -48,15 +48,11 @@ int main () {
         cin >> wei >> val;
         weights.push_back(wei);
         values.push_back(val);
-        cache[i][0] = 0;
     }
-
-    for (int w = 0; w < tw; w++) {
-        cache[0][w] = values[0];
-    }
+    
     int g = solve(n-1, tw);
 
-    cout << cache[n-1][tw] << "\n";
+    cout << g << "\n";
 
     return 0;
 }
