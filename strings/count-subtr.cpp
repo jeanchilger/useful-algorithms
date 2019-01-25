@@ -7,21 +7,19 @@ using namespace std;
 /*counts occurrences of a substring in a larger string
 with overlapping (e.g.: there are 2 occurrences of "aa" in "aaa")*/
 
-int count(string subs, string str, int start=0) {
-    int ocur = 0;
-    int last = str.length() - subs.length();
+int count(string subs, string str, int start=0, int end=-1) {
+    int occur = 0;
+    end = (end == -1 ? str.length() - subs.length() : end);
 
-    for (; start <= last; start++) {
+    for (; start < end; start++) {
         string token = str.substr(start, subs.length());
-        if (token == subs) ocur++;
+        if (token == subs) occur++;
     }
 
-    return ocur;
+    return occur;
 }
 
 int main() {
-    //code here
-
 
     return 0;
 }

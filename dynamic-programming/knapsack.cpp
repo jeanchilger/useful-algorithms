@@ -43,13 +43,13 @@ int main () {
 
     int val, wei; // temporary variables;
 
-    cout << "Descrição dos itens (peso valor)\n";
+    cout << "Descrição dos itens (valor peso)\n";
     for (int i = 0; i < n; i++) {
-        cin >> wei >> val;
+        cin >> val >> wei;
         weights.push_back(wei);
         values.push_back(val);
     }
-    
+
     int g = solve(n-1, tw);
 
     cout << g << "\n";
