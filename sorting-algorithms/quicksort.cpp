@@ -4,9 +4,10 @@ using namespace std;
 
 int partition(int arr[], int first, int last) {
     /*
-    returns the index of the pivot
-    before return, the pivot is set to its correct position
-    */
+     * returns the index of the pivot
+     * before return, the pivot is set to its correct position
+     * */
+
     int pivot = first;
     int low = first + 1;
     int high = last;
@@ -36,8 +37,9 @@ int partition(int arr[], int first, int last) {
 
 void quicksort(int arr[], int first, int last) {
     /*
-    sorts an array in increasing order
-    */
+     * sorts an array in increasing order
+     * */
+
     if (first < last) {
         int p = partition(arr, first, last);
 
