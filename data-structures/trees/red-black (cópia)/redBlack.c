@@ -1,3 +1,20 @@
+
+void showMenu() {
+    printf("\n\t\t  MENU\n");
+    printf("================================================\n");
+    printf(" | 1  - Insert element                         |\n");
+    printf(" | 2  - Search value                           |\n");
+    printf(" | 3  - Erase element                          |\n");
+    printf(" | 4  - Print elements                         |\n");
+    printf(" | 5  - Clean list                             |\n");
+    printf(" | 6  - Calc. tree height                      |\n");
+    printf(" | 7  - Number of nodes                        |\n");
+    printf(" | 8  - Get predecessor                        |\n");
+    printf(" | 9  - Get sucessor                           |\n");
+    printf(" | 10 - Show menu                              |\n");
+    printf(" | 0  - Exit                                   |\n");
+    printf("================================================\n");
+}
 #include <stdio.h>
 #include <stdlib.h>
 #include "redBlack.h"
@@ -12,6 +29,14 @@
 #define RED 0
 #define BLACK 1
 #define DOUBLE_BLACK 2
+
+static Node *NULL_LEAF = &(Node) {
+    .value = 0,
+    .left = NULL,
+    .right = NULL,
+    .parent = NULL,
+    .color = NULL_COLOR
+};
 
 //
 // Utility functions
@@ -52,8 +77,8 @@ Node *newNode (Node *parent, long int val) {
 
     Node *new = (Node *)malloc(sizeof(Node));
     new -> value = val;
-    new -> left = NULL;
-    new -> right = NULL;
+    new -> left = NULL_LEAF;
+    new -> right = NULL_LEAF;
     new -> color = RED; // when inserted, node is red.
     new -> parent = parent;
 
@@ -252,20 +277,14 @@ void insertionFixUp(Node **node) {
     return;
 }
 
-void fixDoubleBlack(Node **node) {
-    /*
-     * Fixes the double black condition.
-     * */
-
-    if ()
-
-        
-}
-
+// TODO: mudar para fixDoubleBlack e chamar só quando um nó e DOUBLE_BLACK;
+// remover NULL_LEAF e adicionar o resto das verificações em erase;
 void delFixUp(Node *old, Node **new) {
     /*
      * Fixes the possible unbalance caused in the deletion of a node.
      * */
+
+    // if (new == NULL || empty(*new)) return;
 
     // replaced node is root
     if (empty(getParent(*new))) {
@@ -280,9 +299,56 @@ void delFixUp(Node *old, Node **new) {
     }
 
     // both old and new are BLACK
-    if ((new == NULL || (*new) -> color == BLACK) && old -> color == BLACK) {
-        fixDoubleBlack(new);
-        return;
+    if ((new == NULL || empty(*new) || getColor(*new) == BLACK) && getColor(old) == BLACK)  {
+        (*new) -> color = DOUBLE_BLACK;
+        Node *sibling = getSibling(*new);
+
+        // sibling is black
+        if (getColor(sibling) == BLACK) {
+
+            // new or old are red
+            if (getColor(sibling -> left) == RED ) {
+                // left left case
+                if (sibling == getParent(sibling) -> left) {
+                    sibling -> left -> color = BLACK;
+                    rightRotate(&(sibling -> parent));
+
+                // left right case
+                } else {
+                    sibling -> right -> color = BLACK;
+                    leftRotate(&sibling);
+                    rightRotate(&(sibling -> parent));
+
+                }
+
+            } else if (getColor(sibling -> right) == RED) {
+                // right right case
+                if (sibling == getParent(sibling) -> left) {
+                    sibling -> right -> color = BLACK;
+                    leftRotate(&(sibling -> parent));
+
+                // right left case
+                } else {
+                    sibling -> left -> color = BLACK;
+                    rightRotate(&sibling);
+                    leftRotate(&(sibling -> parent));
+
+                }
+
+            // both new and old are black
+            } else {
+                (*new) -> color = BLACK;
+                sibling -> color = RED;
+                Node *parent = getParent(*new);
+                if (getColor(parent) == RED) {
+                    parent -> color = BLACK;
+                } else {
+                    parent -> color = DOUBLE_BLACK;
+                    //delFixUp();
+
+                }    
+            }
+        }
     }
 }
 
@@ -295,7 +361,7 @@ int empty(Node *root) {
      * Checks whether the tree is empty or not.
      * */
 
-    return (root == NULL);
+    return (root == NULL ? 1 : root -> color == NULL_COLOR);
 }
 
 void insert(Node **root, Node **parent, long int val) {
@@ -304,7 +370,9 @@ void insert(Node **root, Node **parent, long int val) {
      * If the insertion makes the tree skewed, it is rebalanced following Red-Black rules.
      * */
 
-    if (empty(*root)) {
+
+    if (empty(*root)) { 
+        if (parent == NULL) *parent = NULL_LEAF; 
         (*root) = newNode((*parent), val);
         insertionFixUp(root);
         return;
@@ -348,7 +416,6 @@ void erase(Node **root, long int val) {
             Node *aux = (*root);
             free(*root);
             (*root) = tmp;
-            //prinft("\tAAAAAA: %p\n", (*root) -> parent);
             delFixUp(aux, root);
     
         } else if (empty((*root) -> right)) {
@@ -356,7 +423,6 @@ void erase(Node **root, long int val) {
             Node *aux = (*root);
             free(*root);
             (*root) = tmp;
-            //printf("\tBBBBB: %p\n", (*root) -> parent);
             delFixUp(aux, root);
         
         // Node has two children
@@ -520,3 +586,21 @@ Node *getSucessor(Node *root, Node *pred, long int val) {
     else
         return getSucessor(root -> left, root, val);
 }
+
+void showMenu() {
+    printf("\n\t\t  MENU\n");
+    printf("================================================\n");
+    printf(" | 1  - Insert element                         |\n");
+    printf(" | 2  - Search value                           |\n");
+    printf(" | 3  - Erase element                          |\n");
+    printf(" | 4  - Print elements                         |\n");
+    printf(" | 5  - Clean list                             |\n");
+    printf(" | 6  - Calc. tree height                      |\n");
+    printf(" | 7  - Number of nodes                        |\n");
+    printf(" | 8  - Get predecessor                        |\n");
+    printf(" | 9  - Get sucessor                           |\n");
+    printf(" | 10 - Show menu                              |\n");
+    printf(" | 0  - Exit                                   |\n");
+    printf("================================================\n");
+}
+
