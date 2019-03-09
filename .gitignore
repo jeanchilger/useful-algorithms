@@ -1,5 +1,7 @@
 # Input and output files
-*.txt
+**/*.txt
+**/in[0-9]
+**/out[0-9]
 
 # Prerequisites
 *.d
