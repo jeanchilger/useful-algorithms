@@ -2,7 +2,7 @@
 A bunch of commonly used algorithms and hacks to make a programmer's life easier
 
 ## TODO
-- [] [Sieve of Eratosthenes](https://github.com/JeanCHilger/useful-algorithms/tree/master/math/sieve.cpp)
+- [ ] [Sieve of Eratosthenes](https://github.com/JeanCHilger/useful-algorithms/tree/master/math/sieve.cpp)
 
 ## Quick List
 Superficial description of the contents of this repository.
@@ -13,7 +13,7 @@ Superficial description of the contents of this repository.
     * [red-black](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures/trees/avl): Red-Black balanced tree implementation using C language;
     
 * [dynamic-programming](https://github.com/JeanCHilger/useful-algorithms/tree/master/dynamic-programming): Classical dynamic programming algorithms.
-  * [coin.cpp](https://github.com/JeanCHilger/useful-algorithms/blob/master/dynamic-programming/coin.cpp): C++ implementation for the *coin change* problem;
+  * [coin.cpp](https://github.com/JeanCHilger/useful-algorithms/blob/master/dynamic-programming/coin.cpp): C++ implementation for the *coin chttps://github.com/JeanCHilger/useful-algorithms/tree/master/data-structureshange* problem;
   * [edit-distance.cpp](https://github.com/JeanCHilger/useful-algorithms/blob/master/dynamic-programming/edit-distance.cpp): C++ implementation for the *edit distance* problem;
   * [kadane.cpp](https://github.com/JeanCHilger/useful-algorithms/blob/master/dynamic-programming/kadane.cpp): C++ implementation for the Kadane's algorithm (max sum for a contiguous subarray);
   * [knapsack-bottom-up.cpp](https://github.com/JeanCHilger/useful-algorithms/blob/master/dynamic-programming/knapsack-bottom-up.cpp): C++ implementation for the knapsack problem, using the bottom-up approach;
