@@ -3,7 +3,7 @@ A bunch of commonly used algorithms and hacks to make a programmer's life easier
 
 ## TODO
 - [ ] [Sieve of Eratosthenes](https://github.com/JeanCHilger/useful-algorithms/tree/master/math/sieve.cpp)
-
+- [ ] [Pascal's Triangle](https://github.com/JeanCHilger/useful-algorithms/tree/master/math/pascal.cpp)
 ## Quick List
 Superficial description of the contents of this repository.
 * [data-structures](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures): Useful and ordinary data structures, most found anywhere else.
