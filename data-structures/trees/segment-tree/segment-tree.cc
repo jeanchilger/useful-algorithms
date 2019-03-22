@@ -45,15 +45,36 @@ void fill(int b, int e, int i, int arr[]) {
     st[i] = n;
 }
 
-int query(int b, int e) {
+int query(int b, int e, int id = 1) {
 
+    int i = get<1>(st[id]);
+    int j = get<2>(st[id]);
+
+    if (b == i and j == e) return get<0>(st[id]);
+    
+    printf("i=%d j=%d id=%d\n", i, j, id);
+
+    
+
+    if (i <= b and j >= e){
+        return min(query(b, e, 2 * id), query(b, e, 2 * id + 1)); 
+    }
+    else if (i <= b){
+        return query(b, e, 2 * id);
+    }
+    else if (j >= e){
+        return query(b, e, 2 * id +1);
+    }
+
+    
     return 0;
 }
 
 int main(){
-    int n;
+    int n, e, b;
 
     cin >> n;
+    cin >> b >> e;
     
     int arr[n];
     for (int i = 0; i < n; i++) {
@@ -64,7 +85,8 @@ int main(){
     st.assign(2*n, f);
     
     fill(1, n, 1, arr);
-    bfs(2*n - 1);
+    //bfs(2*n - 1);
+    cout << "query(" << b <<" , "<< e <<  ")" << query(b, e) << endl;
 
     return 0;
 }
