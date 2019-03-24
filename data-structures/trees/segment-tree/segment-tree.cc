@@ -1,3 +1,7 @@
+/*
+ * Simple representation of a segment tree.
+ * */
+
 #include <iostream>
 #include <tuple>
 #include <vector>
@@ -10,11 +14,19 @@ typedef vector <iii> viii;
 viii st;
 
 int min(int a, int b) {
+    /*
+     * Returns the minimun of a and b.
+     * */
+
     return a < b ? a : b;
 }
 
+void print(int n) {
+    /*
+     * Prints the hole tree.
+     * BFS-like print.
+     * */
 
-void bfs(int n) {
     for (int i = 0; i < n; i++) {
         cout << "[ "
              << get<0>(st[i+1])
@@ -30,11 +42,14 @@ void bfs(int n) {
 }
 
 void fill(int b, int e, int i, int arr[]) {
+    /*
+     * Builds the tree with the intervals and the values.
+     * */
+
     if (b == e) {
         iii n(arr[b-1], b, e);
         st[i] = n;
         return;
-
     }
     
     fill(b, (b+e)/2, i*2, arr);
@@ -46,6 +61,9 @@ void fill(int b, int e, int i, int arr[]) {
 }
 
 int query(int b, int e, int id = 1) {
+    /*
+     * Searches for the minimun value in the range [i, j].
+     * */
 
     int i = get<1>(st[id]);
     int j = get<2>(st[id]);
@@ -54,15 +72,13 @@ int query(int b, int e, int id = 1) {
     
     printf("i=%d j=%d id=%d\n", i, j, id);
 
-    
-
-    if (i <= b and j >= e){
+    if (i <= b and j >= e) {
         return min(query(b, e, 2 * id), query(b, e, 2 * id + 1)); 
-    }
-    else if (i <= b){
+    
+    } else if (i <= b) {
         return query(b, e, 2 * id);
-    }
-    else if (j >= e){
+    
+    } else if (j >= e) {
         return query(b, e, 2 * id +1);
     }
 
@@ -85,7 +101,7 @@ int main(){
     st.assign(2*n, f);
     
     fill(1, n, 1, arr);
-    //bfs(2*n - 1);
+    //print(2*n - 1);
     cout << "query(" << b <<" , "<< e <<  ")" << query(b, e) << endl;
 
     return 0;
