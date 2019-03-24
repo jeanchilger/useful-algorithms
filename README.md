@@ -1,5 +1,6 @@
 # useful-algorithms
-A bunch of commonly used algorithms and hacks to make a programmer's life easier
+A bunch of commonly used algorithms and hacks to make a programmer's life easier.
+The algorithms were mostly developed by [JeanCHilger](https://github.com/JeanCHilger), [Junior-16](https://github.com/Junior-16) and [PauloGSC](https://github.com/PauloGSC).
 
 ## TODO
 - [ ] [Sieve of Eratosthenes](https://github.com/JeanCHilger/useful-algorithms/tree/master/math/sieve.cpp)
