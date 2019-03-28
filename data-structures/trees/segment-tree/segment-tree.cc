@@ -8,10 +8,14 @@
 
 using namespace std;
 
+#define INF 99999
+
 typedef tuple<int, int, int> iii;
 typedef vector <iii> viii;
 
 viii st;
+// st[i] -> (val, b, e)
+// where val is the min value between the interval [b, e]
 
 int min(int a, int b) {
     /*
@@ -62,7 +66,7 @@ void fill(int b, int e, int i, int arr[]) {
 
 int query(int b, int e, int id = 1) {
     /*
-     * Searches for the minimun value in the range [i, j].
+     * Searches for the minimun value in the given range [b, e].
      * */
 
     int i = get<1>(st[id]);
@@ -101,8 +105,8 @@ int main(){
     st.assign(2*n, f);
     
     fill(1, n, 1, arr);
-    //print(2*n - 1);
-    cout << "query(" << b <<" , "<< e <<  ")" << query(b, e) << endl;
+    print(2*n - 1);
+    cout << "query(" << b <<" , "<< e <<  ") = " << query(b, e) << endl;
 
     return 0;
 }
