@@ -11,7 +11,8 @@ Superficial description of the contents of this repository.
   * [trees](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures/trees): Trees data structures.
     * [avl](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures/trees/avl): AVL balanced tree implementation using C language;
     * [bst](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures/trees/bst): Binary Search Tree implementation using C language;
-    * [red-black](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures/trees/avl): Red-Black balanced tree implementation using C language;
+    * [red-black](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures/trees/red-black)(not complete): Red-Black balanced tree implementation using C language;
+    * [segment-tree](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures/trees/segment-tree): Segment Tree array-like implementation using C++ language;
     
 * [dynamic-programming](https://github.com/JeanCHilger/useful-algorithms/tree/master/dynamic-programming): Classical dynamic programming algorithms.
   * [coin.cpp](https://github.com/JeanCHilger/useful-algorithms/blob/master/dynamic-programming/coin.cpp): C++ implementation for the *coin chttps://github.com/JeanCHilger/useful-algorithms/tree/master/data-structureshange* problem;
