@@ -4,7 +4,11 @@ The algorithms were mostly developed by [JeanCHilger](https://github.com/JeanCHi
 
 ## TODO
 - [ ] [Sieve of Eratosthenes](https://github.com/JeanCHilger/useful-algorithms/tree/master/math/sieve.cpp)
-- [ ] [Pascal's Triangle](https://github.com/JeanCHilger/useful-algorithms/tree/master/math/pascal.cpp)
+- [ ] Fenwick Tree
+- [ ] Segment Tree with Lazy
+- [ ] Union-Find Disjoint Set
+- [ ] Minimum Spanning Tree
+- [ ] Kuskal Algorithm
 ## Quick List
 Superficial description of the contents of this repository.
 * [data-structures](https://github.com/JeanCHilger/useful-algorithms/tree/master/data-structures): Useful and ordinary data structures, most found anywhere else.
