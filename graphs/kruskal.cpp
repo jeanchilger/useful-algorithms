@@ -1,17 +1,70 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <map>
 
 using namespace std;
 
 // To change the type of the data
 typedef int type;
 typedef vector<type> vt;
-typedef tuple<type, type> ii;
+typedef tuple<type, type, type> iii;
 
-vector<vector<ii>> graph; // graph as an adjacency list 
+vector<iii> graph; // graph as an edge list
+vector<iii> mst; // Minimum Spanning Tree formed with Kruskal's algorithm
 vt parent, ranks;
 
+// Utility
+//
+int partition(int first, int last) {
+    /*
+     * returns the index of the pivot
+     * before return, the pivot is set to its correct position
+     * */
+    
+    int pivot = first;
+    int low = first + 1;
+    int high = last;
+    int temp;
+    
+    while (low <= high) {
+        if (get<0>(graph[low]) <= get<0>(graph[pivot])) {
+            low++;
+
+        } else {
+            if (get<0>(graph[high]) >= get<0>(graph[pivot])) {
+                high--;
+                                                            
+            } else {
+                temp = get<0>(graph[low]);
+                get<0>(graph[low]) = get<0>(graph[high]);
+                get<0>(graph[high]) = temp;                                                                               
+            }                    
+        }
+    }
+
+    temp = get<0>(graph[pivot]);
+    get<0>(graph[pivot]) = get<0>(graph[high]);
+    get<0>(graph[high]) = temp;
+
+    return high;
+}
+
+void quicksort(int first, int last) {
+    /*
+     * sorts an array in increasing order
+     * */
+
+    if (first < last) {
+        int p = partition(first, last);
+        
+        quicksort(first, p - 1);
+        quicksort(p + 1, last);                            
+    }
+}
+
+// <<<< UNION FIND
+//
 void makeSet() {
     /*
      * Builds the Disjoin-Set data structure.
@@ -66,38 +119,34 @@ void unionSet(type x, type y) {
         }
     }
 }
+//
+// >>>>
 
-void showMenu() {
-    cout << "\n\t\t  MENU\n"
-         << "================================================\n"
-         << " | 1  -                                        |\n"
-         << " | 2  - Search value                           |\n"
-         << " | 3  - Erase element                          |\n"
-         << " | 4  - Prints elements                        |\n"
+void kruskal(type e) {
+    /*
+     * Performs the Kruskal's algorithm.
+     * e -> number of edges.
+     * */
 
-    /*printf(" | 5  - Clean list                             |\n");
-    printf(" | 6  - Calc. tree height                      |\n");
-    printf(" | 7  - Number of nodes                        |\n");
-    printf(" | 8  - Get predecessor                        |\n");
-    printf(" | 9  - Get sucessor                           |\n");
-    printf(" | 10 - Show menu                              |\n");
-    printf(" | 0  - Exit                                   |\n");*/
-         << "================================================\n";
+    for (type i = 0; i < e; i++) {
+
+    }
+
 }
 
-void print(int v) {
+//void print(int v) {
     /*
      * Utility to print the graph.
      * */
 
-    for (int i = 0; i < v; i++) {
+/*    for (int i = 0; i < v; i++) {
          for (int j = 0; j < graph[i].size(); j++) {
-             cout << i << " -> " << get<0>(graph[i][j]) << ": " << get<1>(graph[i][j]) << endl;
+             cout << i << " -> " << get<1>(graph[i][j]) << ": " << get<2>(graph[i][j]) << endl;
          }
          cout << endl;
      }
 
-}
+}*/
 
 int main() {
 
@@ -109,7 +158,6 @@ int main() {
     
     cin >> v >> e;
 
-    graph.assign(v, vector<ii>());
     parent.assign(v, 0);
     ranks.assign(v, 0);
 
@@ -117,19 +165,15 @@ int main() {
 
     for (int t = 0; t < e; t++) {
         cin >> w >> i >> j;
-        ii n(j, w);
-        graph[i].push_back(n);
-        ii m(i, w);
-        graph[j].push_back(m);
-        unionSet(i, j);
+        iii n(w, i, j);
+        graph.push_back(n);
     }
 
-    cout << sameSet(1, 2) << sameSet(0, 1) << sameSet(0, 2) << sameSet(3, 4) << sameSet(4, 1) << endl;
-    for (int t=0; t < v; t++) {
-        cout << ranks[t] << " ";
+    quicksort(0, graph.size()-1);
+
+    for (int t = 0; t < e; t++) {
+        cout << get<0>(graph[t]) << " : " << get<1>(graph[t]) << " -> " << get<2>(graph[t]) << endl;
     }
-    cout << endl;
-       
 
     return 0;
 }

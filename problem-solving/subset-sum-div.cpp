@@ -7,30 +7,42 @@
  * Source: https://practice.geeksforgeeks.org/problems/subset-with-sum-divisible-by-m/0
  * */
 
+// This solution is incomplete, is needed to add memoization.
+
 #include <cstdio>
+#include <vector>
 
 using namespace std;
 
-int s(int *arr, int n, int m) {
-    /*AAAAAAAAAAAAAAAAa*/
+int n, m;
 
-    return 0;
+vector<vector<int>> c;
+vector<int> set;
+
+int s(int i, int sum) {
+    if (sum % m == 0 && sum != 0) return 1;
+    if (i > n) return 0; 
+    
+    int a = s(i + 1, sum + set[i]);
+    int b = s(i + 1, sum);
+
+    return max(a, b);
 }
 
 int main() {
 
-    int t, n, m;
+    int t, v;
     scanf(" %d", &t);
     
     for (int x = 0; x < t; x++) {
         scanf(" %d %d", &n, &m);
 
-        int arr[n];
         for (int i = 0; i < n; i++) {
-            scanf(" %d", &arr[i]);
+            scanf(" %d", &v);
+            set.push_back(v);
         }
 
-        printf("%d\n", s(arr, n, m));
+        printf("%d\n", s(0, 0));
     }
 
     return 0;

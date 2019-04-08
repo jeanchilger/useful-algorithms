@@ -21,7 +21,7 @@ int coin(int s, int i) {
     if (i == m) return 0;
     if (cache[s][i] != -1) return cache[s][i];
 
-    int a = coin(s - coins[i], i - 1);
+    int a = coin(s - coins[i], i + 1);
     int b = coin(s, i + 1);
 
 
